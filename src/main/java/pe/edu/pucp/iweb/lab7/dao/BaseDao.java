@@ -2,6 +2,7 @@ package pe.edu.pucp.iweb.lab7.dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.DriverManager;
 
 /**
  * Ejercicio 2a: DAO base.
@@ -14,18 +15,18 @@ public abstract class BaseDao { // TODO 2a: convertir en clase abstracta
 
     public Connection getConnection() throws SQLException {
         // TODO 2a: cargar el driver (com.mysql.cj.jdbc.Driver) y retornar la conexión
-        throw new UnsupportedOperationException("getConnection() aún no implementado");
-        try {
-            Class.forName("")
 
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        }catch (ClassNotFoundException e){
+            e.printStackTrace();
         }
 
+        String user = "root";
+        String pass = "root";
+        String url = "jdbc:mysql://localhost:3306/telecom_andina";
+        return DriverManager.getConnection(url,user,pass);
 
     }
-
-    private static final String URL = "jdbc:mysql://localhost:3306/telecom_andina";
-    private static final String USER = "root";
-    private static final String PASS = "root"; // cambiar por la contraseña de su MySQL
-
 
 }
